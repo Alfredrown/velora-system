@@ -35,3 +35,9 @@ logging:
     org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler: OFF
     org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer: ERROR
     org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter: ERROR
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
