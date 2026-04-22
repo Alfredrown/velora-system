@@ -4,7 +4,6 @@ import com.example.paymentservice.config.KafkaConfig;
 import com.example.paymentservice.event.OrderCreatedEvent;
 import com.example.paymentservice.service.PaymentService;
 
-
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -39,8 +38,7 @@ public class OrderCreatedConsumer {
         } catch (Exception e) {
             System.out.println("PAYMENT CONSUMER - gagal proses orderId=" + event.getOrderId());
             throw new RuntimeException(
-                    "Message ditolak dan dikirim ke DLQ", e
-            );
+                    "Message ditolak dan dikirim ke DLQ", e);
         }
     }
 }

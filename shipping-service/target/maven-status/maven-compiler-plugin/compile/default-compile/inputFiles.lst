@@ -3,6 +3,7 @@
 /Users/lfrd/Documents/velora-system/shipping-service/src/main/java/com/example/shippingservice/controller/ShippingController.java
 /Users/lfrd/Documents/velora-system/shipping-service/src/main/java/com/example/shippingservice/consumer/PaymentSuccessConsumer.java
 /Users/lfrd/Documents/velora-system/shipping-service/src/main/java/com/example/shippingservice/entity/ShipmentStatus.java
+/Users/lfrd/Documents/velora-system/shipping-service/src/main/java/com/example/shippingservice/config/OpenApiConfig.java
 /Users/lfrd/Documents/velora-system/shipping-service/src/main/java/com/example/shippingservice/controller/GlobalExceptionHandler.java
 /Users/lfrd/Documents/velora-system/shipping-service/src/main/java/com/example/shippingservice/event/PaymentResultEvent.java
 /Users/lfrd/Documents/velora-system/shipping-service/src/main/java/com/example/shippingservice/repository/ShipmentRepository.java

@@ -4,6 +4,7 @@ com/example/notificationservice/repository/NotificationRepository.class
 com/example/notificationservice/event/ShipmentCreatedEvent.class
 com/example/notificationservice/config/KafkaConfig.class
 com/example/notificationservice/service/NotificationService.class
+com/example/notificationservice/config/OpenApiConfig.class
 com/example/notificationservice/consumer/PaymentNotificationConsumer.class
 com/example/notificationservice/consumer/ShipmentNotificationConsumer.class
 com/example/notificationservice/NotificationServiceApplication.class

@@ -1,5 +1,6 @@
 /Users/lfrd/Documents/velora-system/notification-service/src/main/java/com/example/notificationservice/repository/NotificationRepository.java
 /Users/lfrd/Documents/velora-system/notification-service/src/main/java/com/example/notificationservice/event/ShipmentCreatedEvent.java
+/Users/lfrd/Documents/velora-system/notification-service/src/main/java/com/example/notificationservice/config/OpenApiConfig.java
 /Users/lfrd/Documents/velora-system/notification-service/src/main/java/com/example/notificationservice/consumer/ShipmentNotificationConsumer.java
 /Users/lfrd/Documents/velora-system/notification-service/src/main/java/com/example/notificationservice/event/PaymentResultEvent.java
 /Users/lfrd/Documents/velora-system/notification-service/src/main/java/com/example/notificationservice/entity/NotificationLog.java

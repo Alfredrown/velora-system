@@ -9,6 +9,7 @@
 /Users/lfrd/Documents/velora-system/order-service/src/main/java/com/example/orderservice/repository/CustomerOrderRepository.java
 /Users/lfrd/Documents/velora-system/order-service/src/main/java/com/example/orderservice/dto/OrderResponse.java
 /Users/lfrd/Documents/velora-system/order-service/src/main/java/com/example/orderservice/event/PaymentResultEvent.java
+/Users/lfrd/Documents/velora-system/order-service/src/main/java/com/example/orderservice/config/OpenApiConfig.java
 /Users/lfrd/Documents/velora-system/order-service/src/main/java/com/example/orderservice/consumer/PaymentResultConsumer.java
 /Users/lfrd/Documents/velora-system/order-service/src/main/java/com/example/orderservice/dto/InventoryReserveRequest.java
 /Users/lfrd/Documents/velora-system/order-service/src/main/java/com/example/orderservice/config/KafkaConfig.java

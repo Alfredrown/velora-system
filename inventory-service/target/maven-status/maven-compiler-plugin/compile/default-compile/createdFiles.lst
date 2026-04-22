@@ -1,3 +1,4 @@
+com/example/inventoryservice/config/OpenApiConfig.class
 com/example/inventoryservice/service/InventoryService.class
 com/example/inventoryservice/dto/ReserveItemRequest.class
 com/example/inventoryservice/InventoryServiceApplication.class

@@ -10,4 +10,5 @@ com/example/paymentservice/consumer/PaymentOrderCreatedDlqConsumer.class
 com/example/paymentservice/event/OrderItemPayload.class
 com/example/paymentservice/producer/PaymentResultProducer.class
 com/example/paymentservice/repository/PaymentRepository.class
+com/example/paymentservice/config/OpenApiConfig.class
 com/example/paymentservice/consumer/OrderCreatedConsumer.class

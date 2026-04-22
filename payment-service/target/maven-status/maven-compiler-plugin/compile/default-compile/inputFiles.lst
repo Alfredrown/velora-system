@@ -8,6 +8,7 @@
 /Users/lfrd/Documents/velora-system/payment-service/src/main/java/com/example/paymentservice/consumer/PaymentOrderCreatedDlqConsumer.java
 /Users/lfrd/Documents/velora-system/payment-service/src/main/java/com/example/paymentservice/entity/Payment.java
 /Users/lfrd/Documents/velora-system/payment-service/src/main/java/com/example/paymentservice/producer/PaymentResultProducer.java
+/Users/lfrd/Documents/velora-system/payment-service/src/main/java/com/example/paymentservice/config/OpenApiConfig.java
 /Users/lfrd/Documents/velora-system/payment-service/src/main/java/com/example/paymentservice/consumer/OrderCreatedConsumer.java
 /Users/lfrd/Documents/velora-system/payment-service/src/main/java/com/example/paymentservice/repository/PaymentRepository.java
 /Users/lfrd/Documents/velora-system/payment-service/src/main/java/com/example/paymentservice/event/OrderItemPayload.java

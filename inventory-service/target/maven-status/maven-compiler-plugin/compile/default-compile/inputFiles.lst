@@ -10,6 +10,7 @@
 /Users/lfrd/Documents/velora-system/inventory-service/src/main/java/com/example/inventoryservice/entity/Product.java
 /Users/lfrd/Documents/velora-system/inventory-service/src/main/java/com/example/inventoryservice/dto/ProductCatalogVariantResponse.java
 /Users/lfrd/Documents/velora-system/inventory-service/src/main/java/com/example/inventoryservice/dto/ProductVariantResponse.java
+/Users/lfrd/Documents/velora-system/inventory-service/src/main/java/com/example/inventoryservice/config/OpenApiConfig.java
 /Users/lfrd/Documents/velora-system/inventory-service/src/main/java/com/example/inventoryservice/dto/InventoryReserveResponse.java
 /Users/lfrd/Documents/velora-system/inventory-service/src/main/java/com/example/inventoryservice/InventoryServiceApplication.java
 /Users/lfrd/Documents/velora-system/inventory-service/src/main/java/com/example/inventoryservice/service/InventoryService.java
