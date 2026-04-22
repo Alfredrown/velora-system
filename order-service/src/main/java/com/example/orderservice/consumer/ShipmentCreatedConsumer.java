@@ -1,11 +1,12 @@
 package com.example.orderservice.consumer;
 
-import com.example.orderservice.config.RabbitConfig;
+import com.example.orderservice.config.KafkaConfig;
 import com.example.orderservice.event.ShipmentCreatedEvent;
 import com.example.orderservice.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +20,7 @@ public class ShipmentCreatedConsumer {
         this.orderService = orderService;
     }
 
-    @RabbitListener(queues = RabbitConfig.ORDER_SHIPMENT_CREATED_QUEUE)
+    @KafkaListener(topics = KafkaConfig.SHIPMENT_CREATED_TOPIC, groupId = "${spring.application.name}")
     public void handleShipmentCreated(ShipmentCreatedEvent event) {
         log.info("""
 ============================================================
@@ -31,7 +32,7 @@ Tracking No   : {}
 Shipment Stat.: {}
 ============================================================
 """,
-                RabbitConfig.ORDER_SHIPMENT_CREATED_QUEUE,
+                KafkaConfig.SHIPMENT_CREATED_TOPIC,
                 event.getOrderId(),
                 event.getTrackingNumber(),
                 event.getShipmentStatus());

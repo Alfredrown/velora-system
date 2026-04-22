@@ -1,11 +1,12 @@
 package com.example.orderservice.consumer;
 
-import com.example.orderservice.config.RabbitConfig;
+import com.example.orderservice.config.KafkaConfig;
 import com.example.orderservice.event.PaymentResultEvent;
 import com.example.orderservice.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +20,7 @@ public class PaymentResultConsumer {
         this.orderService = orderService;
     }
 
-    @RabbitListener(queues = RabbitConfig.ORDER_PAYMENT_SUCCESS_QUEUE)
+    @KafkaListener(topics = KafkaConfig.PAYMENT_SUCCESS_TOPIC, groupId = "${spring.application.name}")
     public void handlePaymentSuccess(PaymentResultEvent event) {
         log.info("""
 ============================================================
@@ -32,7 +33,7 @@ Payment Status: {}
 Amount        : {}
 ============================================================
 """,
-                RabbitConfig.ORDER_PAYMENT_SUCCESS_QUEUE,
+                KafkaConfig.PAYMENT_SUCCESS_TOPIC,
                 event.getOrderId(),
                 event.getCustomerName(),
                 event.getPaymentStatus(),
@@ -40,7 +41,7 @@ Amount        : {}
         orderService.updateFromPaymentResult(event);
     }
 
-    @RabbitListener(queues = RabbitConfig.ORDER_PAYMENT_FAILED_QUEUE)
+    @KafkaListener(topics = KafkaConfig.PAYMENT_FAILED_TOPIC, groupId = "${spring.application.name}")
     public void handlePaymentFailed(PaymentResultEvent event) {
         log.info("""
 ============================================================
@@ -53,7 +54,7 @@ Payment Status: {}
 Reason        : {}
 ============================================================
 """,
-                RabbitConfig.ORDER_PAYMENT_FAILED_QUEUE,
+                KafkaConfig.PAYMENT_FAILED_TOPIC,
                 event.getOrderId(),
                 event.getCustomerName(),
                 event.getPaymentStatus(),

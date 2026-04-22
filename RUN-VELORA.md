@@ -11,7 +11,7 @@ Cek container:
 docker ps
 ```
 
-## 2. Cek RabbitMQ UI
+## 2. Cek Apache Kafka UI
 Buka:
 - http://localhost:15672
 

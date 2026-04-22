@@ -1,10 +1,11 @@
 package com.example.paymentservice.producer;
 
-import com.example.paymentservice.config.RabbitConfig;
+import com.example.paymentservice.config.KafkaConfig;
 import com.example.paymentservice.event.PaymentResultEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,14 +13,14 @@ public class PaymentResultProducer {
 
     private static final Logger log = LoggerFactory.getLogger(PaymentResultProducer.class);
 
-    private final RabbitTemplate rabbitTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
-    public PaymentResultProducer(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
+    public PaymentResultProducer(KafkaTemplate<String, Object> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
     }
 
     public void sendSuccess(PaymentResultEvent event) {
-        rabbitTemplate.convertAndSend(RabbitConfig.PAYMENT_SUCCESS_EXCHANGE, "", event);
+        kafkaTemplate.send(KafkaConfig.PAYMENT_SUCCESS_TOPIC, event);
         log.info("""
 ============================================================
 PAYMENT SERVICE - PAYMENT SUCCESS PUBLISHED
@@ -29,12 +30,12 @@ Routing Key   : <fanout>
 Order ID      : {}
 ============================================================
 """,
-                RabbitConfig.PAYMENT_SUCCESS_EXCHANGE,
+                KafkaConfig.PAYMENT_SUCCESS_TOPIC,
                 event.getOrderId());
     }
 
     public void sendFailure(PaymentResultEvent event) {
-        rabbitTemplate.convertAndSend(RabbitConfig.PAYMENT_FAILED_EXCHANGE, "", event);
+        kafkaTemplate.send(KafkaConfig.PAYMENT_FAILED_TOPIC, event);
         log.info("""
 ============================================================
 PAYMENT SERVICE - PAYMENT FAILED PUBLISHED
@@ -44,7 +45,7 @@ Routing Key   : <fanout>
 Order ID      : {}
 ============================================================
 """,
-                RabbitConfig.PAYMENT_FAILED_EXCHANGE,
+                KafkaConfig.PAYMENT_FAILED_TOPIC,
                 event.getOrderId());
     }
 }

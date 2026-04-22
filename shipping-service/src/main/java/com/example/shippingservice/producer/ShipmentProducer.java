@@ -1,10 +1,11 @@
 package com.example.shippingservice.producer;
 
-import com.example.shippingservice.config.RabbitConfig;
+import com.example.shippingservice.config.KafkaConfig;
 import com.example.shippingservice.event.ShipmentCreatedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,14 +13,14 @@ public class ShipmentProducer {
 
     private static final Logger log = LoggerFactory.getLogger(ShipmentProducer.class);
 
-    private final RabbitTemplate rabbitTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
-    public ShipmentProducer(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
+    public ShipmentProducer(KafkaTemplate<String, Object> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
     }
 
     public void sendShipmentCreated(ShipmentCreatedEvent event) {
-        rabbitTemplate.convertAndSend(RabbitConfig.SHIPMENT_CREATED_EXCHANGE, "", event);
+        kafkaTemplate.send(KafkaConfig.SHIPMENT_CREATED_TOPIC, event);
 
         log.info("""
 ============================================================
@@ -31,7 +32,7 @@ Order ID      : {}
 Tracking No   : {}
 ============================================================
 """,
-                RabbitConfig.SHIPMENT_CREATED_EXCHANGE,
+                KafkaConfig.SHIPMENT_CREATED_TOPIC,
                 "",
                 event.getOrderId(),
                 event.getTrackingNumber());

@@ -1,10 +1,11 @@
 package com.example.shippingservice.consumer;
 
-import com.example.shippingservice.config.RabbitConfig;
+import com.example.shippingservice.config.KafkaConfig;
 import com.example.shippingservice.event.PaymentResultEvent;
 import com.example.shippingservice.service.ShippingService;
-import org.springframework.amqp.AmqpRejectAndDontRequeueException;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+
+
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,13 +17,13 @@ public class PaymentSuccessConsumer {
         this.shippingService = shippingService;
     }
 
-    @RabbitListener(queues = RabbitConfig.PAYMENT_SUCCESS_QUEUE)
+    @KafkaListener(topics = KafkaConfig.PAYMENT_SUCCESS_TOPIC, groupId = "${spring.application.name}")
     public void handlePaymentSuccess(PaymentResultEvent event) {
         try {
             System.out.println("============================================================");
             System.out.println("SHIPPING CONSUMER - RECEIVE PAYMENT SUCCESS");
             System.out.println("============================================================");
-            System.out.println("Queue          : " + RabbitConfig.PAYMENT_SUCCESS_QUEUE);
+            System.out.println("Queue          : " + KafkaConfig.PAYMENT_SUCCESS_TOPIC);
             System.out.println("Order ID       : " + event.getOrderId());
             System.out.println("Customer       : " + event.getCustomerName());
             System.out.println("Payment Status : " + event.getPaymentStatus());
@@ -37,7 +38,7 @@ public class PaymentSuccessConsumer {
 
         } catch (Exception e) {
             System.out.println("SHIPPING CONSUMER - gagal proses orderId=" + event.getOrderId());
-            throw new AmqpRejectAndDontRequeueException(
+            throw new RuntimeException(
                     "Message ditolak dan dikirim ke DLQ", e
             );
         }

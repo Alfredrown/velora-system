@@ -12,7 +12,7 @@
 - `order-service` memanggil `inventory-service` untuk cek varian produk
 - `order-service` memanggil `inventory-service` untuk reserve stock
 
-### Asynchronous RabbitMQ
+### Asynchronous Apache Kafka
 - `order-service` publish event `order.created`
 - `payment-service` consume `order.created`
 - `payment-service` publish `payment.success` / `payment.failed`
@@ -32,13 +32,13 @@ Folder ini juga menyediakan:
 - Maven
 - Docker Desktop
 
-## 1. Jalankan RabbitMQ + MySQL
+## 1. Jalankan Apache Kafka + MySQL
 Dari root folder:
 ```bash
 docker compose up -d
 ```
 
-RabbitMQ UI:
+Apache Kafka UI:
 - http://localhost:15672
 - username: `guest`
 - password: `guest`

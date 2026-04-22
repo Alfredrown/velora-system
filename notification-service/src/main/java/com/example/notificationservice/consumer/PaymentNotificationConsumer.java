@@ -1,11 +1,12 @@
 package com.example.notificationservice.consumer;
 
-import com.example.notificationservice.config.RabbitConfig;
+import com.example.notificationservice.config.KafkaConfig;
 import com.example.notificationservice.event.PaymentResultEvent;
 import com.example.notificationservice.service.NotificationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +20,7 @@ public class PaymentNotificationConsumer {
         this.notificationService = notificationService;
     }
 
-    @RabbitListener(queues = RabbitConfig.PAYMENT_SUCCESS_QUEUE)
+    @KafkaListener(topics = KafkaConfig.PAYMENT_SUCCESS_TOPIC, groupId = "${spring.application.name}")
     public void onPaymentSuccess(PaymentResultEvent event) {
         log.info("""
 ============================================================
@@ -33,7 +34,7 @@ Amount         : {}
 Payment Status : {}
 ============================================================
 """,
-                RabbitConfig.PAYMENT_SUCCESS_QUEUE,
+                KafkaConfig.PAYMENT_SUCCESS_TOPIC,
                 event.getOrderId(),
                 event.getCustomerName(),
                 event.getEmail(),
@@ -43,7 +44,7 @@ Payment Status : {}
         notificationService.savePaymentNotification(event);
     }
 
-    @RabbitListener(queues = RabbitConfig.PAYMENT_FAILED_QUEUE)
+    @KafkaListener(topics = KafkaConfig.PAYMENT_FAILED_TOPIC, groupId = "${spring.application.name}")
     public void onPaymentFailed(PaymentResultEvent event) {
         log.info("""
 ============================================================
@@ -57,7 +58,7 @@ Reason         : {}
 Payment Status : {}
 ============================================================
 """,
-                RabbitConfig.PAYMENT_FAILED_QUEUE,
+                KafkaConfig.PAYMENT_FAILED_TOPIC,
                 event.getOrderId(),
                 event.getCustomerName(),
                 event.getEmail(),

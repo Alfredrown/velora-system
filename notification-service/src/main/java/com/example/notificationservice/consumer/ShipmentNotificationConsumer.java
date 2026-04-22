@@ -1,11 +1,12 @@
 package com.example.notificationservice.consumer;
 
-import com.example.notificationservice.config.RabbitConfig;
+import com.example.notificationservice.config.KafkaConfig;
 import com.example.notificationservice.event.ShipmentCreatedEvent;
 import com.example.notificationservice.service.NotificationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +20,7 @@ public class ShipmentNotificationConsumer {
         this.notificationService = notificationService;
     }
 
-    @RabbitListener(queues = RabbitConfig.SHIPMENT_CREATED_QUEUE)
+    @KafkaListener(topics = KafkaConfig.SHIPMENT_CREATED_TOPIC, groupId = "${spring.application.name}")
     public void onShipmentCreated(ShipmentCreatedEvent event) {
         log.info("""
 ============================================================
@@ -33,7 +34,7 @@ Tracking No   : {}
 Courier       : {}
 ============================================================
 """,
-                RabbitConfig.SHIPMENT_CREATED_QUEUE,
+                KafkaConfig.SHIPMENT_CREATED_TOPIC,
                 event.getOrderId(),
                 event.getCustomerName(),
                 event.getEmail(),
