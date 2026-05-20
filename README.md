@@ -132,12 +132,13 @@ Harus muncul:
 velora-mysql       0.0.0.0:3307->3306/tcp
 velora-kafka       0.0.0.0:9092->9092/tcp
 velora-zookeeper   0.0.0.0:2181->2181/tcp
+velora-kafka-ui    0.0.0.0:8099->8080/tcp
 ```
 
 Kalau container lama bentrok:
 
 ```powershell
-docker rm -f velora-mysql velora-kafka velora-zookeeper
+docker rm -f velora-mysql velora-kafka velora-zookeeper velora-kafka-ui
 docker compose up -d
 ```
 
@@ -259,6 +260,16 @@ mvn spring-boot:run
 | 🔔 Notification | http://localhost:8085/swagger-ui.html |
 
 > Catatan: jika memakai tombol **Authorize** di Swagger, biasanya cukup paste **token saja tanpa kata `Bearer`**. Jika memakai kolom manual `Authorization`, gunakan format `Bearer <token>`.
+
+---
+
+## 📊 Kafka UI
+
+Anda bisa memantau topic, message, consumer group, dan data broker Kafka secara visual:
+
+| Tool | URL | Keterangan |
+|---|---|---|
+| 📊 Kafka UI | http://localhost:8099 | Memantau event, DLQ, & topic di Velora Kafka cluster |
 
 ---
 

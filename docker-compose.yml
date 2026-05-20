@@ -44,6 +44,20 @@ services:
     networks:
       - velora-net
 
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: velora-kafka-ui
+    ports:
+      - "8099:8080"
+    depends_on:
+      - kafka
+    environment:
+      DYNAMIC_CONFIG_ENABLED: "true"
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+    networks:
+      - velora-net
+
 volumes:
   velora_mysql_data:
 
